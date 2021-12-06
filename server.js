@@ -11,6 +11,13 @@ dotenv.config();
 
 const app = express();
 
+const firebaseAdmin = require('firebase-admin');
+firebaseAdmin.initializeApp({
+  credential: firebaseAdmin.credential.cert(
+    JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+  ),
+});
+
 //Creating API for user
 app.use('/api/users', userRoutes);
 
