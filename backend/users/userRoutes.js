@@ -25,3 +25,5 @@ routes.post('/sign-up', async (req, res) => {
     return;
   }
 });
+
+module.exports = routes;

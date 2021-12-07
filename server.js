@@ -21,6 +21,9 @@ firebaseAdmin.initializeApp({
 //Creating API for user
 app.use('/api/users', userRoutes);
 
+const importedUserRouting = require('./backend/users/userRoutes');
+app.use('/backend/users', importedUserRouting);
+
 const PORT = process.env.PORT || 5000;
 
 //Express js listen method to run project on http://localhost:5000
