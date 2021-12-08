@@ -1,5 +1,5 @@
 # WAFF-T3A2
 
-To start servers (both front & backend):
+To start MongoDB backend run:
 
-npm run dev
+npm start
