@@ -1,33 +1,40 @@
-import connectDB from './backend/config/db.js';
-import userRoutes from './backend/routes/userRoute.js';
-import express from 'express';
-import dotenv from 'dotenv';
-
-//connect database
-connectDB();
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const app = require('./app');
 
 //dotenv config
-dotenv.config();
+dotenv.config({ path: 'config.env' });
 
-const app = express();
+const DB = process.env.DATABASE.replace(
+  '<PASSWORD>',
+  process.env.DATABASE_PASSWORD
+);
 
-const firebaseAdmin = require('firebase-admin');
-firebaseAdmin.initializeApp({
-  credential: firebaseAdmin.credential.cert(
-    JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
-  ),
-});
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  })
+  .then(con => {
+    console.log(con.connections);
+    console.log('DB connection successful!');
+  });
+
+// const firebaseAdmin = require('firebase-admin');
+// firebaseAdmin.initializeApp({
+//   credential: firebaseAdmin.credential.cert(
+//     JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+//   ),
+// });
 
 //Creating API for user
-app.use('/api/users', userRoutes);
+// app.use('/api/users', userRoutes);
 
-const importedUserRouting = require('./backend/users/userRoutes');
-app.use('/backend/users', importedUserRouting);
+// const importedUserRouting = require('./backend/users/userRoutes');
+// app.use('/backend/users', importedUserRouting);
 
-const PORT = process.env.PORT || 5000;
-
-//Express js listen method to run project on http://localhost:5000
-app.listen(
-  PORT,
-  console.log(`App is running in ${process.env.NODE_ENV} mode on port ${PORT}`)
-);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`App is running on port ${port}...`);
+});
