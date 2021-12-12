@@ -42,7 +42,7 @@ const filmSchema = new mongoose.Schema(
     },
     price: {
       type: Number,
-      required: [true, 'A tour must have a price'],
+      required: [true, 'A film must have a price'],
     },
     priceDiscount: {
       type: Number,
@@ -57,7 +57,7 @@ const filmSchema = new mongoose.Schema(
     summary: {
       type: String,
       trim: true,
-      required: [true, 'A tour must have a description'],
+      required: [true, 'A film must have a description'],
     },
     description: {
       type: String,
@@ -65,7 +65,7 @@ const filmSchema = new mongoose.Schema(
     },
     imageCover: {
       type: String,
-      required: [true, 'A tour must have a cover image'],
+      required: [true, 'A film must have a cover image'],
     },
     images: [String],
     createdAt: {
