@@ -5,24 +5,39 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon server.js",
-    "start:prod": "NODE_ENV=production nodemon server.js"
+    "start:prod": "NODE_ENV=production nodemon server.js",
+    "test": "jest --testEnvironment=node --runInBand ./src/tests"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
+    "crypto-js": "^4.1.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.2.0",
+    "express-mongo-sanitize": "^2.1.0",
+    "express-rate-limit": "^5.5.1",
     "firebase": "^9.6.0",
     "firebase-admin": "^10.0.0",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "mongodb-memory-server": "^8.0.4",
     "mongoose": "^5.13.13",
     "morgan": "^1.10.0",
-    "slugify": "^1.6.3"
+    "nodemailer": "^6.7.2",
+    "slugify": "^1.6.3",
+    "validator": "^13.7.0",
+    "xss-clean": "^0.1.1"
   },
   "devDependencies": {
     "concurrently": "^6.4.0",
+    "jest": "^27.4.4",
     "nodemon": "^2.0.15"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }

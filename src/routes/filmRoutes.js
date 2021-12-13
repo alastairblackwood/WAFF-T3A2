@@ -1,26 +1,24 @@
 const express = require('express');
 const filmController = require('./../controllers/filmController');
+const authController = require('./../controllers/authController');
 
 const router = express.Router();
 
 // router.param('id', filmController.checkID);
 
 router
-  .route('/top-5-cheap')
-  .get(filmController.aliasTopFilms, filmController.getAllFilms);
-
-router.route('/film-stats').get(filmController.getFilmStats);
-router.route('/monthly-plan/:year').get(filmController.getMonthlyPlan);
-
-router
   .route('/')
-  .get(filmController.getAllFilms)
+  .get(authController.protect, filmController.getAllFilms)
   .post(filmController.createFilm);
 
 router
   .route('/:id')
   .get(filmController.getFilm)
   .patch(filmController.updateFilm)
-  .delete(filmController.deleteFilm);
+  .delete(
+    authController.protect,
+    authController.restrictTo('admin'),
+    filmController.deleteFilm
+  );
 
 module.exports = router;

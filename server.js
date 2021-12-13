@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
+// process.on('uncaughtException', err => {
+//   console.log('UNCAUGHT EXCEPTION! Shutting down...');
+//   console.log(err.name, err.message);
+//   process.exit(1);
+// });
+
 //dotenv config
-dotenv.config({ path: 'config.env' });
+dotenv.config({ path: './config.env' });
 const app = require('./app');
 
 const DB = process.env.DATABASE.replace(
@@ -10,6 +16,7 @@ const DB = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD
 );
 
+// connect to db
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
@@ -19,20 +26,15 @@ mongoose
   })
   .then(() => console.log('DB connection successful!'));
 
-const firebaseAdmin = require('firebase-admin');
-firebaseAdmin.initializeApp({
-  credential: firebaseAdmin.credential.cert(
-    JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
-  ),
-});
-
-//Creating API for user
-// app.use('/api/users', userRoutes);
-
-// const importedUserRouting = require('./backend/users/userRoutes');
-// app.use('/backend/users', importedUserRouting);
-
 const port = process.env.PORT || 5000;
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`App is running on port ${port}...`);
 });
+
+// process.on('unhandledRejection', err => {
+//   console.log('UNHANDLED REJECTION! Shutting down...');
+//   console.log(err.name, err.message);
+//   server.close(() => {
+//     process.exit(1);
+//   });
+// });
