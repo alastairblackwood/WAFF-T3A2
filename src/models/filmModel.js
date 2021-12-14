@@ -13,6 +13,10 @@ const filmSchema = new mongoose.Schema(
       minlength: [10, 'A film name must have more or equal then 10 characters'],
       // validate: [validator.isAlpha, 'film name must only contain characters']
     },
+    year: {
+      type: Number,
+      required: [true, 'A film must have a year'],
+    },
     slug: String,
     duration: {
       type: Number,
@@ -42,10 +46,6 @@ const filmSchema = new mongoose.Schema(
       select: false,
     },
     startDates: [Date],
-    secretFilm: {
-      type: Boolean,
-      default: false,
-    },
   },
   {
     toJSON: { virtuals: true },

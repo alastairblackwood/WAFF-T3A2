@@ -17,6 +17,18 @@ const app = express();
 // Set security HTTP headers
 app.use(helmet());
 
+// Added access to bypass CORS error
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  console.log('Hellooooo');
+  next();
+});
+
 // Dev logging
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
