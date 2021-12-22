@@ -9,8 +9,8 @@ const filmSchema = new mongoose.Schema(
       required: [true, 'A film must have a name'],
       unique: true,
       trim: true,
-      maxlength: [40, 'A film name must have less or equal then 40 characters'],
-      minlength: [10, 'A film name must have more or equal then 10 characters'],
+      maxlength: [50, 'A film name must have less or equal then 50 characters'],
+      minlength: [3, 'A film name must have more or equal then 3 characters'],
       // validate: [validator.isAlpha, 'film name must only contain characters']
     },
     year: {
