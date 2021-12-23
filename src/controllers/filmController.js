@@ -1,28 +1,11 @@
 const Film = require('./../models/filmModel');
-const APIFeatures = require('./../utils/apiFeatures');
+const factory = require('./handlerFactory');
 
-// exports.aliasTopFilms = (req, res, next) => {
-//   req.query.limit = '5';
-//   req.query.sort = '-ratingsAverage,price';
-//   req.query.fields = 'name,price,ratingsAverage,summary';
-//   next();
-// };
-
-// const films = JSON.parse(
-//   fs.readFileSync(`${__dirname}/../dev-data/data/films-simple.json`)
-// );
-
-// exports.checkID = (req, res, next, val) => {
-//   console.log(`film id is: ${val}`);
-
-//   if (req.params.id * 1 > films.length) {
-//     return res.status(404).json({
-//       status: 'fail',
-//       message: 'Invalid ID',
-//     });
-//   }
-//   next();
-// };
+exports.getAllFilms = factory.getAll(Film);
+exports.getFilm = factory.getOne(Film, { path: 'reviews' });
+exports.createFilm = factory.createOne(Film);
+exports.updateFilm = factory.updateOne(Film);
+exports.deleteFilm = factory.deleteOne(Film);
 
 exports.getAllFilms = async (req, res) => {
   try {
