@@ -17,6 +17,7 @@ const filmRouter = require('./src/routes/filmRoutes');
 const userRouter = require('./src/routes/userRoutes');
 const bookingRouter = require('./src/routes/bookingRoutes');
 const bookingController = require('./src/controllers/bookingController');
+// const showtimeRouter = require('./src/routes/showtimeRoutes');
 
 const app = express();
 
@@ -92,7 +93,7 @@ app.use(
 app.use(compression());
 
 // Serving static files
-app.use(express.static(`${__dirname}/public`));
+// app.use(express.static(`${__dirname}/public`));
 
 // Test middleware
 app.use((req, res, next) => {
@@ -104,6 +105,7 @@ app.use((req, res, next) => {
 app.use('/api/v1/films', filmRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/bookings', bookingRouter);
+// app.use('/api/v1/showtimes', showtimeRouter);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
