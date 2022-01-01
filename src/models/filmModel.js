@@ -49,6 +49,12 @@ const filmSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+    images: [String],
+    createdAt: {
+      type: Date,
+      default: Date.now(),
+      select: false,
+    },
     showDate: {
       type: Date,
       required: true,

@@ -13,9 +13,6 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   // 2) Create checkout session
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
-    // success_url: `${req.protocol}://${req.get('host')}/my-films/?film=${
-    //   req.params.filmId
-    // }&user=${req.user.id}&price=${film.price}`,
     success_url: `${req.protocol}://${req.get('host')}/my-films?alert=booking`,
     cancel_url: `${req.protocol}://${req.get('host')}/film/${film.slug}`,
     customer_email: req.user.email,
@@ -28,7 +25,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
           `${req.protocol}://${req.get('host')}/img/films/${film.imageCover}`,
         ],
         amount: film.price * 100,
-        currency: 'usd',
+        currency: 'aud',
         quantity: 1,
       },
     ],

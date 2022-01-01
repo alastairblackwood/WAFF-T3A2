@@ -8,13 +8,23 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(authController.protect, filmController.getAllFilms)
-  .post(filmController.createFilm);
+  .get(filmController.getAllFilms)
+  .post(
+    authController.protect,
+    authController.restrictTo('admin'),
+    filmController.createFilm
+  );
 
 router
   .route('/:id')
   .get(filmController.getFilm)
-  .patch(filmController.updateFilm)
+  .patch(
+    authController.protect,
+    authController.restrictTo('admin'),
+    filmController.uploadFilmImages,
+    filmController.resizeFilmImages,
+    filmController.updateFilm
+  )
   .delete(
     authController.protect,
     authController.restrictTo('admin'),
