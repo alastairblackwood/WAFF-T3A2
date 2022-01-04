@@ -36,7 +36,7 @@ const filmSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    description: {
+    summary: {
       type: String,
       required: true,
       trim: true,
