@@ -10,7 +10,14 @@
     "debug": "ndb server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
     "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
-    "test": "jest --testEnvironment=node --runInBand ./src/tests"
+    "test": "jest --testEnvironment=node --runInBand ./src/tests/unit",
+    "preset": "@shelf/jest-mongodb"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "html"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -23,6 +30,7 @@
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "crypto-js": "^4.1.1",
+    "cypress": "^9.2.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-async-handler": "^1.2.0",
