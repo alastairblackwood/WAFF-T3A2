@@ -1,4 +1,17 @@
-const filmController = require('../../controllers/filmController');
+const authController = require('../src/controllers/authController');
+const { fakeUserData } = require('../test/testData');
+const {
+  validateNotEmpty,
+  validateStringEquality,
+  validateMongoDuplicationError,
+} = require('../src/utils/test-utils/validators.utils');
+const {
+  dbConnect,
+  dbDisconnect,
+} = require('../src/utils/test-utils/dbHandler.utils');
+
+beforeAll(async () => dbConnect());
+afterAll(async () => dbDisconnect());
 
 describe('Check auth controller functions', () => {
   it('should sign JWT token', () => {
@@ -8,6 +21,14 @@ describe('Check auth controller functions', () => {
   it('should create new user', () => {
     expect();
   });
+});
+
+afterAll(async done => {
+  // Force our server reference to close:
+  await server.close();
+
+  await new Promise(resolve => setTimeout(() => resolve(), 500));
+  done();
 });
 
 // Callbacks

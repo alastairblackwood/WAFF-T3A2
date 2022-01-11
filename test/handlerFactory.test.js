@@ -1,13 +1,34 @@
-const filmModel = require('../../models/filmModel');
+const handlerFactory = require('../src/controllers/handlerFactory');
+const { fakeUserData } = require('../test/testData');
+const {
+  validateNotEmpty,
+  validateStringEquality,
+  validateMongoDuplicationError,
+} = require('../src/utils/test-utils/validators.utils');
+const {
+  dbConnect,
+  dbDisconnect,
+} = require('../src/utils/test-utils/dbHandler.utils');
 
-describe('Check auth controller functions', () => {
-  it('should sign JWT token', () => {
-    expect(typeof authController.signup).toBe('function');
+beforeAll(async () => dbConnect());
+afterAll(async () => dbDisconnect());
+
+describe('Check handlers function correctly', () => {
+  it('should create user using createOne', () => {
+    expect(typeof handlerFactory.createOne).toBe('function');
   });
 
   it('should create new user', () => {
     expect();
   });
+});
+
+afterAll(async done => {
+  // Force our server reference to close:
+  await server.close();
+
+  await new Promise(resolve => setTimeout(() => resolve(), 500));
+  done();
 });
 
 // Callbacks

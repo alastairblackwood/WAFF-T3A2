@@ -10,11 +10,14 @@
     "debug": "ndb server.js",
     "watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
     "build:js": "parcel build ./public/js/index.js --out-dir ./public/js --out-file bundle.js",
-    "test": "jest --testEnvironment=node --runInBand ./src/tests/unit",
+    "test": "jest --testEnvironment=node --runInBand --detectOpenHandles ./test/",
     "preset": "@shelf/jest-mongodb"
   },
   "jest": {
     "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
     "coverageReporters": [
       "html"
     ]
@@ -55,6 +58,7 @@
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.16.8",
     "@shelf/jest-mongodb": "^2.1.1",
     "concurrently": "^6.4.0",
     "eslint": "^8.5.0",
@@ -65,7 +69,8 @@
     "eslint-plugin-react": "^7.27.1",
     "jest": "^27.4.4",
     "nodemon": "^2.0.15",
-    "parcel-bundler": "^1.12.5"
+    "parcel-bundler": "^1.12.5",
+    "supertest": "^6.1.6"
   },
   "engines": {
     "node": ">=10.0.0"

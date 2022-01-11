@@ -1,13 +1,35 @@
-const authController = require('../../controllers/authController');
+const filmController = require('../src/controllers/filmController');
+const { fakeUserData } = require('../test/testData');
+const {
+  validateNotEmpty,
+  validateStringEquality,
+  validateMongoDuplicationError,
+} = require('../src/utils/test-utils/validators.utils');
+const {
+  dbConnect,
+  dbDisconnect,
+} = require('../src/utils/test-utils/dbHandler.utils');
 
-describe('Check auth controller functions', () => {
-  it('should sign JWT token', () => {
-    expect(typeof authController.signup).toBe('function');
+beforeAll(async () => dbConnect());
+afterAll(async () => dbDisconnect());
+
+describe('Should create new film listing', () => {
+  it('should create new film', () => {
+    expect(typeof filmController.createFilm).toBe('function');
   });
 
-  it('should create new user', () => {
+  it('should create new film', () => {
     expect();
+    done();
   });
+});
+
+afterAll(async done => {
+  // Force our server reference to close:
+  await server.close();
+
+  await new Promise(resolve => setTimeout(() => resolve(), 500));
+  done();
 });
 
 // Callbacks

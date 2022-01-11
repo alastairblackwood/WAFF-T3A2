@@ -1,19 +1,35 @@
-const errorController = require('../../controllers/errorController');
+const filmModel = require('../src/models/filmModel');
+const { fakeUserData } = require('../test/testData');
+const {
+  validateNotEmpty,
+  validateStringEquality,
+  validateMongoDuplicationError,
+} = require('../src/utils/test-utils/validators.utils');
+const {
+  dbConnect,
+  dbDisconnect,
+} = require('../src/utils/test-utils/dbHandler.utils');
 
-test('should throw an error if called without an arg', () => {
-  expect(errorController).toThrow('You must provide a number');
+beforeAll(async () => dbConnect());
+afterAll(async () => dbDisconnect());
+
+describe('Check film schema and verify data is correct', () => {
+  it('should verify schema input and ensure its valid', () => {
+    expect(typeof filmModel.Film).toBe('function');
+  });
+
+  it('should create new user', () => {
+    expect();
+  });
 });
 
-test('should throw an error if called without a number', () => {
-    expect(() => {
-        errorController('45'));
-    }.toThrow('You must provide a number');
-}
+afterAll(async done => {
+  // Force our server reference to close:
+  await server.close();
 
-//   it('should create new user', () => {
-//     expect();
-//   });
-// });
+  await new Promise(resolve => setTimeout(() => resolve(), 500));
+  done();
+});
 
 // Callbacks
 

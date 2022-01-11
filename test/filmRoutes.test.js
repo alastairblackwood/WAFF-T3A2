@@ -1,14 +1,36 @@
-const filmRoutes = require('../../routes/filmRoutes');
+const filmRoutes = require('../src/routes/filmRoutes');
+const { fakeUserData } = require('../test/testData');
+const {
+  validateNotEmpty,
+  validateStringEquality,
+  validateMongoDuplicationError,
+} = require('../src/utils/test-utils/validators.utils');
+const {
+  dbConnect,
+  dbDisconnect,
+} = require('../src/utils/test-utils/dbHandler.utils');
 
-describe('Check auth controller functions', () => {
-  it('should sign JWT token', () => {
-    expect(typeof authController.signup).toBe('function');
+beforeAll(async () => dbConnect());
+afterAll(async () => dbDisconnect());
+
+describe('Check film routes & ensure they function correctly', () => {
+  it('should verify film route', () => {
+    expect(typeof filmRoutes.router).toBe('route');
   });
 
-  it('should create new user', () => {
+  it('should find assigned route', () => {
     expect();
+    done();
   });
 });
+
+// afterAll(async done => {
+//   // Force our server reference to close:
+//   await server.close();
+
+//   await new Promise(resolve => setTimeout(() => resolve(), 500));
+//   done();
+// });
 
 // Callbacks
 

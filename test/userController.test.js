@@ -1,13 +1,34 @@
-const authController = require('../../controllers/authController');
+const userController = require('../src/controllers/userController');
+const { fakeUserData } = require('../test/testData');
+const {
+  validateNotEmpty,
+  validateStringEquality,
+  validateMongoDuplicationError,
+} = require('../src/utils/test-utils/validators.utils');
+const {
+  dbConnect,
+  dbDisconnect,
+} = require('../src/utils/test-utils/dbHandler.utils');
 
-describe('Check auth controller functions', () => {
-  it('should sign JWT token', () => {
-    expect(typeof authController.signup).toBe('function');
+beforeAll(async () => dbConnect());
+afterAll(async () => dbDisconnect());
+
+describe('Check user controller functions', () => {
+  it('should return error if updateMe is called', () => {
+    expect(typeof userController.updateMe).toBe('function');
   });
 
-  it('should create new user', () => {
+  it('should update new user', () => {
     expect();
   });
+});
+
+afterAll(async done => {
+  // Force our server reference to close:
+  await server.close();
+
+  await new Promise(resolve => setTimeout(() => resolve(), 500));
+  done();
 });
 
 // Callbacks
