@@ -1,16 +1,31 @@
 const filmController = require('../src/controllers/filmController');
+const request = require('supertest');
+const app = require('../app');
+const server = require('../server');
 const { fakeUserData } = require('../test/testData');
 const {
   validateNotEmpty,
   validateStringEquality,
   validateMongoDuplicationError,
 } = require('../src/utils/test-utils/validators.utils');
-const {
-  dbConnect,
-  dbDisconnect,
-} = require('../src/utils/test-utils/dbHandler.utils');
 
-beforeAll(async () => dbConnect());
+const mongoose = require('mongoose');
+const { MongoMemoryServer } = require('mongodb-memory-server');
+
+// init empty, assign later
+var dbConnectionTest;
+var mongoServer;
+
+beforeAll(async () => {
+  mongoServer = await MongoMemoryServer.create();
+  const mongooseOpts = {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  };
+  dbConnectionTest = await mongoose.connect(mongoServer.getUri(), mongooseOpts);
+});
 afterAll(async () => dbDisconnect());
 
 describe('Should create new film listing', () => {
@@ -25,6 +40,12 @@ describe('Should create new film listing', () => {
 });
 
 afterAll(async done => {
+  if (dbConnectionTest) {
+    await mongoose.connection.dropDatabase();
+    await mongoose.connection.close();
+    await mongoose.disconnect();
+    await mongoServer.stop();
+  }
   // Force our server reference to close:
   await server.close();
 

@@ -1,28 +1,56 @@
-const filmRoutes = require('../src/routes/filmRoutes');
-const { fakeUserData } = require('../test/testData');
-const {
-  validateNotEmpty,
-  validateStringEquality,
-  validateMongoDuplicationError,
-} = require('../src/utils/test-utils/validators.utils');
-const {
-  dbConnect,
-  dbDisconnect,
-} = require('../src/utils/test-utils/dbHandler.utils');
+// const filmRoutes = require('../src/routes/filmRoutes');
+// const request = require('supertest');
+// const app = require('../app');
+// const server = require('../server');
+// const { fakeUserData } = require('../test/testData');
+// const {
+//   validateNotEmpty,
+//   validateStringEquality,
+//   validateMongoDuplicationError,
+// } = require('../src/utils/test-utils/validators.utils');
 
-beforeAll(async () => dbConnect());
-afterAll(async () => dbDisconnect());
+// const mongoose = require('mongoose');
+// const { MongoMemoryServer } = require('mongodb-memory-server');
 
-describe('Check film routes & ensure they function correctly', () => {
-  it('should verify film route', () => {
-    expect(typeof filmRoutes.router).toBe('route');
-  });
+// // init empty, assign later
+// var dbConnectionTest;
+// var mongoServer;
 
-  it('should find assigned route', () => {
-    expect();
-    done();
-  });
-});
+// beforeAll(async () => {
+//   mongoServer = await MongoMemoryServer.create();
+//   const mongooseOpts = {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useUnifiedTopology: true,
+//     useFindAndModify: false,
+//   };
+//   dbConnectionTest = await mongoose.connect(mongoServer.getUri(), mongooseOpts);
+// });
+
+// describe('Check film routes & ensure they function correctly', () => {
+//   it('should verify film route', () => {
+//     expect(typeof filmRoutes.router).toBe('route');
+//   });
+
+//   it('should find assigned route', () => {
+//     expect();
+//     done();
+//   });
+// });
+
+// afterAll(async done => {
+//   if (dbConnectionTest) {
+//     await mongoose.connection.dropDatabase();
+//     await mongoose.connection.close();
+//     await mongoose.disconnect();
+//     await mongoServer.stop();
+//   }
+//   // Force our server reference to close:
+//   await server.close();
+
+//   await new Promise(resolve => setTimeout(() => resolve(), 500));
+//   done();
+// });
 
 // afterAll(async done => {
 //   // Force our server reference to close:

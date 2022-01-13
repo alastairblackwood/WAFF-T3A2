@@ -1,5 +1,17 @@
 # WAFF-T3A2
 
-To start MongoDB backend run:
+# Wes Anderson Film Festival
 
-npm start
+Link to Server: https://wesandersonfilmfestival.herokuapp.com
+
+# Description
+
+This is the REST API for https://wesandersonfilmfestival.herokuapp.com For more information on how this app is built, please see our client-side GitHub repo.
+
+# Developer Mode
+
+To run this app locally, git clone the repo and then run:
+
+    npm install
+
+    npm run dev

@@ -45,3 +45,5 @@ const server = app.listen(port, () => {
 //     console.log('💥 Process terminated!');
 //   });
 // });
+
+module.exports = server;
