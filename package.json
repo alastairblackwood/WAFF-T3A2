@@ -39,8 +39,6 @@
     "express-async-handler": "^1.2.0",
     "express-mongo-sanitize": "^2.1.0",
     "express-rate-limit": "^5.5.1",
-    "firebase": "^9.6.0",
-    "firebase-admin": "^10.0.0",
     "helmet": "^4.6.0",
     "hpp": "^0.2.3",
     "html-to-text": "^8.1.0",
