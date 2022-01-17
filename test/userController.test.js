@@ -1,13 +1,13 @@
-const userController = require('../../src/controllers/userController');
+const userController = require('../src/controllers/userController');
 const request = require('supertest');
-const app = require('../../app');
-const server = require('../../server');
+const app = require('../app');
+const server = require('../server');
 const { fakeUserData } = require('../testData');
 const {
   validateNotEmpty,
   validateStringEquality,
   validateMongoDuplicationError,
-} = require('../../src/utils/test-utils/validators.utils');
+} = require('../src/utils/test-utils/validators.utils');
 
 const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');

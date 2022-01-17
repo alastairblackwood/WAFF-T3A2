@@ -60,7 +60,6 @@
     "@babel/preset-env": "^7.16.8",
     "@shelf/jest-mongodb": "^2.1.1",
     "babel-jest": "^27.4.6",
-    "babel-polyfill": "^6.26.0",
     "concurrently": "^6.4.0",
     "eslint": "^8.5.0",
     "eslint-config-airbnb": "^19.0.2",
