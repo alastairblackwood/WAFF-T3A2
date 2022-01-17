@@ -1,6 +1,7 @@
 const request = require('supertest');
 const server = require('../server');
 const mongoose = require('mongoose');
+const dbHandler = require('../src/utils/test-utils/dbHandler.utils');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 
 // init empty, assign later
@@ -39,6 +40,7 @@ describe('Can get JSON data from specific routes.', () => {
   it("The 'message' property exists and says 'Hello world!'", async done => {
     const res = await request(server).get('/jsonResponseRoute');
     expect(res.body.message).toEqual('Hello world!');
+    done();
   });
 });
 
